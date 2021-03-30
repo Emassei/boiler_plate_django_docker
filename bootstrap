@@ -1,0 +1,7 @@
+#!/bin/sh
+echo "What name would you like for your project?"
+read project_name
+echo "And what app would you like to create"
+read app_name
+docker-compose -f docker-compose.local.yml run web django-admin startproject $project_name app;
+docker-compose -f docker-compose.local.yml run web django-admin startapp $app_name app;
