@@ -4,16 +4,14 @@
 1. Django Web Server
 2. Postgres DB
 
+
 ### Start the project by
 
 ```
-python -m venv env
-source env/bin/activate
-pip install django==3.0.7
-django-admin.py startproject {project_name} .
+docker-compose -f docker-compose.local.yml run web django-admin startproject {name_of_project} app
 ```
 
-### Add this to the settings file
+### Add this to the settings file for the postgres db
 ```
 import os
 
@@ -31,11 +29,10 @@ DATABASES = {
 
 ### create apps
 ```
-docker-compose -f docker-compose.local.yml exec web python manage.py {app_name} app
+docker-compose -f docker-compose.local.yml run web django-admin startapp {name_of_app} app
 ```
 
-### append to the settings file
-
+### Prod settings
 ```
 STATIC_URL = "/staticfiles/"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
