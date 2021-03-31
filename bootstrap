@@ -4,4 +4,8 @@ read project_name
 echo "And what app would you like to create"
 read app_name
 docker-compose -f docker-compose.local.yml run web django-admin startproject $project_name app;
-docker-compose -f docker-compose.local.yml run web django-admin startapp $app_name app;
+mkdir ./app/$app_name
+docker-compose -f docker-compose.local.yml run web django-admin startapp $app_name ./app/$app_name;
+group=$(ls -al | tail -1 | awk '{print $4}')
+sudo chown -R $USER:$group .
+
